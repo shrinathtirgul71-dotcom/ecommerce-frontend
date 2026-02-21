@@ -20,6 +20,7 @@ import { LoginContext } from "../context/ContextProvider";
 import { toast } from 'react-toastify';
 import { useSelector } from "react-redux";
 
+const BASE_URL = "https://ecommerce-backend-1-b285.onrender.com";
 
 const Navbar = () => {
     const { account, setAccount } = useContext(LoginContext);
@@ -49,7 +50,7 @@ const Navbar = () => {
     }
 
     const getdetailvaliduser = async () => {
-        const res = await fetch("/validuser", {
+        const res = await fetch(`${BASE_URL}/validuser`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -70,7 +71,7 @@ const Navbar = () => {
 
     const logoutUser = async () => {
         try {
-            const res = await fetch("/logout", {
+            const res = await fetch(`${BASE_URL}/logout`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -188,18 +189,14 @@ const Navbar = () => {
                                         'aria-labelledby': 'basic-button',
                                     }}
                                 >
-                                    {/* 👇 Profile link added */}
                                     <MenuItem onClick={() => { navigate('/profile'); handleClose(); }}>
                                         <PersonIcon style={{ fontSize: 16, marginRight: 8 }} />
                                         My Profile
                                     </MenuItem>
-
-                                    {/* 👇 Order History link added */}
                                     <MenuItem onClick={() => { navigate('/orderhistory'); handleClose(); }}>
                                         <HistoryIcon style={{ fontSize: 16, marginRight: 8 }} />
                                         Order History
                                     </MenuItem>
-
                                     <MenuItem onClick={logoutUser}>
                                         <LogoutIcon style={{ fontSize: 16, marginRight: 8 }} />
                                         Logout
