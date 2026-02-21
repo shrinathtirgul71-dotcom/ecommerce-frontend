@@ -11,19 +11,21 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const BASE_URL = "https://ecommerce-backend-1-b285.onrender.com";
+
 const Cart = () => {
 
   const { id } = useParams();
   const history = useNavigate();
   const { account, setAccount} = useContext(LoginContext);
 
-  const [inddata, setInddata] = useState(null);  // 👈 null instead of []
+  const [inddata, setInddata] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const getinddata = async () => {
     setLoading(true);
     
-    const fetchPromise = fetch(`/getproductsone/${id}`, {
+    const fetchPromise = fetch(`${BASE_URL}/getproductsone/${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
@@ -37,7 +39,7 @@ const Cart = () => {
 
     if (res.status !== 201) {
       console.log("no data available");
-      setInddata(null);  // 👈 set null on error
+      setInddata(null);
     } else {
       console.log("get data");
       setInddata(data);
@@ -56,7 +58,7 @@ const Cart = () => {
     }
 
     try {
-      const checkres = await fetch(`/addcart/${id}`, {
+      const checkres = await fetch(`${BASE_URL}/addcart/${id}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -92,7 +94,7 @@ const Cart = () => {
     }
 
     try {
-      const checkres = await fetch(`/addcart/${id}`, {
+      const checkres = await fetch(`${BASE_URL}/addcart/${id}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -124,7 +126,7 @@ const Cart = () => {
     <>
       {loading ? (
         <Skeleton type="product-detail" />
-      ) : inddata ? (  // 👈 simple null check
+      ) : inddata ? (
           <div className='cart_section'>
             <div className='cart_container'>
               <div className='left_cart'>
@@ -159,7 +161,6 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          // 👇 No Product Found message
           <div className='noproduct_section'>
             <img
               src='https://m.media-amazon.com/images/G/31/error/title._TTD_.png'
