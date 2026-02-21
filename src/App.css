@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* ============================================
+   OPTIMIZED CSS VARIABLES (No Dark Mode)
+============================================ */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f3f3f3;
+  --bg-card: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #565959;
+  --border-color: #ddd;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --shadow-hover: rgba(0, 0, 0, 0.2);
+  --accent-color: #ff9900;
+  --accent-hover: #e68a00;
+  --navbar-bg: #131921;
+  --navbar-hover: #232f3e;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #888c8d;
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS
+============================================ */
+
+/* REMOVED: Universal * selector that was causing lag */
+/* Only animate what's needed, not everything */
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   LOADING SCREEN - FASTER
+============================================ */
+.circle {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-primary);
+}
+
+.circle h2 {
+  margin-top: 20px;
+  color: var(--text-primary);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ============================================
+   SMOOTH PAGE TRANSITIONS - OPTIMIZED
+============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   FAST PAGE ROUTE TRANSITIONS
+============================================ */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.page-transition-exit {
+  opacity: 1;
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+/* ============================================
+   CARD ANIMATIONS - GPU ACCELERATED
+============================================ */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px var(--shadow-hover);
+}
+
+/* ============================================
+   BUTTON ANIMATIONS - SNAPPY
+============================================ */
+button {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px var(--shadow-hover);
+}
+
+button:active {
+  transform: translateY(0);
+  transition: transform 0.05s ease;
+}
+
+/* ============================================
+   INPUT ANIMATIONS - MINIMAL
+============================================ */
+input, textarea, select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--input-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.1);
+}
+
+/* ============================================
+   SMOOTH SCROLL (NO LAG)
+============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   IMAGE LOADING - FAST
+============================================ */
+img {
+  animation: fadeIn 0.3s ease;
+}
+
+/* ============================================
+   LINK HOVER - SIMPLE & FAST
+============================================ */
+a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* ============================================
+   PRODUCT CARD - OPTIMIZED
+============================================ */
+.product-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px var(--shadow-hover);
+}
+
+/* ============================================
+   NAVBAR - SMOOTH
+============================================ */
+.navbar {
+  transition: box-shadow 0.2s ease;
+}
+
+.navbar.scrolled {
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+/* ============================================
+   BADGE ANIMATION - SUBTLE
+============================================ */
+.badge {
+  animation: fadeIn 0.3s ease;
+}
+
+/* ============================================
+   CART ANIMATION - FAST
+============================================ */
+.cart-item {
+  animation: slideInRight 0.3s ease;
+}
+
+.cart-item.removing {
+  animation: slideOutRight 0.3s ease;
+}
+
+@keyframes slideOutRight {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   MODAL - QUICK TRANSITIONS
+============================================ */
+.modal {
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  animation: fadeInUp 0.25s ease;
+}
+
+/* ============================================
+   LOADING SKELETON - SMOOTH
+============================================ */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    #e0e0e0 50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================
+   STAGGER ANIMATIONS - REDUCED
+============================================ */
+.stagger-item {
+  animation: fadeIn 0.4s ease;
+}
+
+.stagger-item:nth-child(1) { animation-delay: 0.05s; }
+.stagger-item:nth-child(2) { animation-delay: 0.1s; }
+.stagger-item:nth-child(3) { animation-delay: 0.15s; }
+.stagger-item:nth-child(4) { animation-delay: 0.2s; }
+.stagger-item:nth-child(5) { animation-delay: 0.25s; }
+.stagger-item:nth-child(6) { animation-delay: 0.3s; }
+
+/* ============================================
+   RESPONSIVE - DISABLE ON MOBILE FOR PERFORMANCE
+============================================ */
+@media (max-width: 768px) {
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  
+  button:hover {
+    transform: none;
+  }
+  
+  /* Disable stagger on mobile */
+  .stagger-item {
+    animation: fadeIn 0.3s ease;
+    animation-delay: 0s !important;
+  }
+}
+
+/* ============================================
+   REDUCE MOTION FOR ACCESSIBILITY & PERFORMANCE
+============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   PERFORMANCE: GPU ACCELERATION
+============================================ */
+.card,
+.product-card,
+button {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
