@@ -88,7 +88,7 @@ const SIgnUp = () => {
         if (Object.values(newErrors).some(e => e !== '')) return;
 
         try {
-            const res = await fetch("/register", {
+            const res = await fetch("https://ecommerce-backend-1-b285.onrender.com/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
