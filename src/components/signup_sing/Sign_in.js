@@ -66,7 +66,7 @@ const Sign_in = () => {
         }
 
         try {
-            const res = await fetch("/login", {
+            const res = await fetch("https://ecommerce-backend-1-b285.onrender.com/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
