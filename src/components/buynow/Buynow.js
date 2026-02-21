@@ -6,21 +6,23 @@ import Subtotal from './Subtotal';
 import { Divider } from '@mui/material';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useContext } from 'react'; // 👈 Add this
-import { LoginContext } from "../context/ContextProvider"; // 👈 Add this
+import { useContext } from 'react';
+import { LoginContext } from "../context/ContextProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+
+const BASE_URL = "https://ecommerce-backend-1-b285.onrender.com";
 
 const Buynow = () => {
 
     const [cartData, setCartdata] = useState([]);
     const navigate = useNavigate();
-    const { account } = useContext(LoginContext); // 👈 Add this to check login status
+    const { account } = useContext(LoginContext);
 
     const getdatabuy = async () => {
         try {
-            const res = await fetch("/cartdetails", {
+            const res = await fetch(`${BASE_URL}/cartdetails`, {
                 method: "GET",
                 headers: {
                     Accept: "application/json",
@@ -87,7 +89,6 @@ const Buynow = () => {
                                                         <p className='unusuall'>Usually dispatched in 8 days.</p>
                                                         <p>Eligible for FREE Shipping</p>
                                                         <img src='https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px-2x._CB485942108_.png' alt='' />
-                                                        
                                                         <Option deletedata={e.id} get={getdatabuy} quantity={e.quantity} /> 
                                                     </div>
                                                     <h3 className='item_price'>₹{e.price.cost * e.quantity}.00</h3>
@@ -107,15 +108,11 @@ const Buynow = () => {
                                 />
                                 <div className='emptydata'>
                                     <h1>Your Amazon Cart is Empty</h1>
-                                    
-                                    {/* 👇 CONDITIONAL MESSAGE BASED ON LOGIN STATUS */}
                                     {account ? (
-                                        // ✅ LOGGED IN - Show this message
                                         <p className='logged_in_msg'>
                                             Check your Saved for later items below or continue shopping.
                                         </p>
                                     ) : (
-                                        // ❌ LOGGED OUT - Show login buttons
                                         <>
                                             <p onClick={() => navigate('/')} className='shop_deals_link'>
                                                 Shop today's deals
