@@ -2,13 +2,15 @@ import {React, useContext} from 'react'
 import { LoginContext } from '../context/ContextProvider';
 import { toast } from 'react-toastify';
 
-const Option = ({ deletedata, get, quantity }) => {  // 👈 added quantity prop
+const BASE_URL = "https://ecommerce-backend-1-b285.onrender.com";
+
+const Option = ({ deletedata, get, quantity }) => {
 
   const { account, setAccount } = useContext(LoginContext);
 
   const removedata = async () => {
     try {
-      const res = await fetch(`/remove/${deletedata}`, {
+      const res = await fetch(`${BASE_URL}/remove/${deletedata}`, {
         method: "DELETE",
         headers: {
           Accept: "application/json",
@@ -22,26 +24,19 @@ const Option = ({ deletedata, get, quantity }) => {  // 👈 added quantity prop
       if (res.status === 201 || res.status === 200) {
         setAccount(data);
         get();
-        toast.success("Item removed from cart!", {
-          position: "top-center"
-        });
+        toast.success("Item removed from cart!", { position: "top-center" });
       } else {
-        toast.error("Failed to remove item", {
-          position: "top-center"
-        });
+        toast.error("Failed to remove item", { position: "top-center" });
       }
 
     } catch (error) {
       console.log("Error:", error);
-      toast.error("Something went wrong!", {
-        position: "top-center"
-      });
+      toast.error("Something went wrong!", { position: "top-center" });
     }
   }
 
   return (
     <div className='add_remove_select'>
-      {/* 👇 replaced select with qty badge */}
       <div className='quantity_badge'>Qty: {quantity}</div>
       <p style={{ cursor: "pointer" }} onClick={removedata}>Delete</p> <span> | </span>
       <p className='forremovemedia'>Save Or Later</p><span> | </span>
