@@ -1,4 +1,4 @@
-.home_section{
+.home_section {
     width: 100%;
     position: relative;
     top: 60px;
@@ -7,26 +7,16 @@
     border-bottom: 2px solid rgb(199, 199, 199);
     margin-bottom: 10px;
 }
-
-.home_section .products_section{
+.home_section .products_section {
     width: 98%;
     margin: 10px auto;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-.home_section .slide_part{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.slide_part .left_slide{
-    width: 80%;
-}
-
-.slide_part .right_slide{
+.home_section .slide_part { display: flex; align-items: center; gap: 10px; }
+.slide_part .left_slide { width: 80%; }
+.slide_part .right_slide {
     width: 20%;
     height: 370px;
     display: flex;
@@ -37,44 +27,19 @@
     border-radius: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
-
-.center_img img{
-    display: block;
-    width: 80%;
-    margin: 13px auto;
-}
-
-.slide_part .right_slide a{
-    color: #007185;
-    text-decoration: none;
-    text-transform: capitalize;
-    transition: color 0.2s ease;
-}
-
-.slide_part .right_slide a:hover{
-    color: #ff9900;
-}
-
-.slide_part .right_slide img{
-    height: 275px;
-    width: 90%;
-}
-
-.products_section .products_deal{
+.center_img img { display: block; width: 80%; margin: 13px auto; }
+.slide_part .right_slide a { color: #007185; text-decoration: none; text-transform: capitalize; transition: color 0.2s ease; }
+.slide_part .right_slide a:hover { color: #ff9900; }
+.slide_part .right_slide img { height: 275px; width: 90%; }
+.products_section .products_deal {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
     padding: 8px 20px;
 }
-
-.products_section .products_deal h3{
-    color: #444;
-    font-weight: 500;
-    font-size: 19px;
-}
-
-.products_section .products_deal .view_btn{
+.products_section .products_deal h3 { color: #444; font-weight: 500; font-size: 19px; }
+.products_section .products_deal .view_btn {
     padding: 9px 15px;
     border: none;
     outline: none;
@@ -87,117 +52,58 @@
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.products_section .products_deal .view_btn:hover{
+.products_section .products_deal .view_btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(40, 116, 240, 0.3);
 }
-
-.products_section a{
-    text-decoration: none;
-    color: #111;
-}
-
-/* ============================================
-   PRODUCT CARD STYLING - ENHANCED!
-============================================ */
-.products_section .products_items{
+.products_section a { text-decoration: none; color: #111; }
+.products_section .products_items {
     margin: 10px;
     padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    
-    /* 🎨 Card Styling - Like Flipkart! */
     background-color: #fff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-    
-    /* Performance */
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     will-change: transform;
 }
-
-.products_section .products_items:hover{
+.products_section .products_items:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
     border-color: #ff9900;
 }
-
-.products_section .products_items img{
+.products_section .products_items img {
     width: 150px;
     height: 150px;
     margin-top: 4px;
     object-fit: contain;
     transition: transform 0.3s ease;
 }
+.products_section .products_items:hover img { transform: scale(1.05); }
+.products_section .products_items p { font-size: 14px; margin: 5px 0; text-align: center; }
+.products_section .products_items p:first-of-type { margin-top: 10px; font-weight: 500; color: #333; }
+.products_section .products_items p:last-of-type { color: #ff9900; font-weight: 600; font-size: 16px; }
 
-.products_section .products_items:hover img{
-    transform: scale(1.05);
+@media (max-width: 768px) {
+    .home_section { top: 55px; }
+    .slide_part .right_slide { display: none; }
+    .slide_part .left_slide { width: 100%; }
+    .center_img img { object-fit: cover; height: 160px; width: 100%; margin: 0; }
+    .products_section .products_items { margin: 6px; padding: 10px; }
+    .products_section .products_items img { width: 110px; height: 110px; }
+    .products_section .products_deal h3 { font-size: 16px; }
+    .products_section .products_deal .view_btn { font-size: 13px; width: 80px; padding: 7px 10px; }
 }
-
-.products_section .products_items p{
-    font-size: 14px;
-    margin: 5px 0;
-    text-align: center;
-}
-
-.products_section .products_items p:first-of-type{
-    margin-top: 10px;
-    font-weight: 500;
-    color: #333;
-}
-
-/* Price styling */
-.products_section .products_items p:last-of-type{
-    color: #ff9900;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-============================================ */
-@media (max-width: 768px){
-    .slide_part .right_slide{
-        display: none;
-    }
-    
-    .slide_part .left_slide{
-        width: 100%;
-    }
-
-    .center_img img{
-        object-fit: cover;
-        height: 120px;
-        width: 95%;
-    }
-    
-    .products_section .products_items{
-        margin: 8px;
-        padding: 12px;
-    }
-    
-    .products_section .products_items img{
-        width: 120px;
-        height: 120px;
-    }
-    
-    .products_section .products_items:hover{
-        transform: translateY(-2px);
-    }
-}
-
-@media (max-width: 480px){
-    .products_section .products_items{
-        margin: 5px;
-        padding: 10px;
-    }
-    
-    .products_section .products_items img{
-        width: 100px;
-        height: 100px;
-    }
+@media (max-width: 480px) {
+    .center_img img { height: 120px; }
+    .products_section .products_items { margin: 4px; padding: 8px; }
+    .products_section .products_items img { width: 85px; height: 85px; }
+    .products_section .products_items p { font-size: 12px; }
+    .products_section .products_items p:last-of-type { font-size: 13px; }
+    .products_section .products_deal { padding: 6px 10px; }
+    .products_section .products_deal h3 { font-size: 14px; }
 }
