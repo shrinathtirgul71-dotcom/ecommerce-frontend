@@ -29,9 +29,8 @@ const Sign_in = () => {
 
     const adddata = (e) => {
         const { name, value } = e.target;
-
         setData(prev => ({
-            ...logdata,
+            ...prev,
             [name]: value
         }))
     };
@@ -41,27 +40,19 @@ const Sign_in = () => {
 
         const { email, password } = logdata;
 
-        // ✅ Better validation
         if (!email || !password) {
-            toast.error("Please fill in all fields", {
-                position: "top-center",
-            });
+            toast.error("Please fill in all fields", { position: "top-center" });
             return;
         }
 
-        // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            toast.error("Please enter a valid email address", {
-                position: "top-center",
-            });
+            toast.error("Please enter a valid email address", { position: "top-center" });
             return;
         }
 
         if (password.length < 6) {
-            toast.error("Password must be at least 6 characters", {
-                position: "top-center",
-            });
+            toast.error("Password must be at least 6 characters", { position: "top-center" });
             return;
         }
 
@@ -71,40 +62,28 @@ const Sign_in = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    email, password,
-                })
+                credentials: "include", // ✅ FIXED: saves the cookie from backend
+                body: JSON.stringify({ email, password })
             });
 
             const data = await res.json();
 
             if (res.status === 400) {
-                toast.error("Invalid email or password", {
-                    position: "top-center",
-                });
+                toast.error("Invalid email or password", { position: "top-center" });
             } else if (res.status === 401) {
-                toast.error("Incorrect password. Please try again.", {
-                    position: "top-center",
-                });
+                toast.error("Incorrect password. Please try again.", { position: "top-center" });
             } else if (res.status === 404) {
-                toast.error("No account found with this email", {
-                    position: "top-center",
-                });
+                toast.error("No account found with this email", { position: "top-center" });
             } else if (!data) {
-                toast.error("Something went wrong. Please try again.", {
-                    position: "top-center",
-                });
+                toast.error("Something went wrong. Please try again.", { position: "top-center" });
             } else {
-                setAccount(data);
+                setAccount(data.userlogin); // ✅ FIXED: set correct user object
                 toast.success("Login successful! Welcome back 🎉", {
                     position: "top-center",
                     autoClose: 1500
                 });
                 setData({ email: "", password: "" });
-                
-                setTimeout(() => {
-                    navigate('/');
-                }, 1500);
+                setTimeout(() => { navigate('/'); }, 1500);
             }
         } catch (error) {
             console.error("Login error:", error);
@@ -129,8 +108,8 @@ const Sign_in = () => {
                                 <input type='email'
                                     onChange={adddata}
                                     value={logdata.email}
-                                    name='email' 
-                                    id='email' 
+                                    name='email'
+                                    id='email'
                                     placeholder='Enter your email'
                                 />
                             </div>
@@ -139,9 +118,9 @@ const Sign_in = () => {
                                 <input type='password'
                                     onChange={adddata}
                                     value={logdata.password}
-                                    name='password' 
-                                    placeholder='At least 6 characters' 
-                                    id='password' 
+                                    name='password'
+                                    placeholder='At least 6 characters'
+                                    id='password'
                                 />
                             </div>
                             <button className='signin_btn' onClick={senddata}>Continue</button>
@@ -149,7 +128,9 @@ const Sign_in = () => {
                     </div>
                     <div className='create_accountinfo'>
                         <p>New To Amazon</p>
-                        <NavLink to='/register'> <button>Create Your Amazon Account</button></NavLink>
+                        <NavLink to='/register'>
+                            <button>Create Your Amazon Account</button>
+                        </NavLink>
                     </div>
                 </div>
                 <ToastContainer />
